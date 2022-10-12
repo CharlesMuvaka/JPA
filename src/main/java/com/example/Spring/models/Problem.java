@@ -2,7 +2,14 @@ package com.example.Spring.models;
 
 import javax.persistence.*;
 import java.util.Objects;
-@Entity(name = "problem") // creates a relation in the database with the given name
+@Entity(name = "user_problem") // creates a relation in the database with the given name
+@Table(
+        //gives us entire control of our relation such as setting unique keys
+        name = "user_problem",
+        uniqueConstraints = {
+                @UniqueConstraint( name = "user_problem_solution" , columnNames = "problem_solution")
+        }
+)
 public class Problem {
 
     @Id //identifies the id of the class as the primary key
@@ -20,7 +27,31 @@ public class Problem {
             generator = "problem_sequence"
     )
     private int id;
-    private String name, consequence, solution, duration;
+    @Column(
+            name = "problem_name",
+            columnDefinition = "VARCHAR",
+            nullable = false
+    )
+    private String name;
+    @Column(
+            name = "problem_consequence",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
+    private String consequence;
+
+    @Column(
+            name = "problem_solution",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
+    private String solution;
+    @Column(
+            name = "problem_duration",
+            columnDefinition = "TEXT",
+            nullable = false
+    )
+    private String duration;
 
     public Problem() {
     }
