@@ -22,5 +22,11 @@ public class ProblemServiceImp implements ProblemService{
         return repo.findAll();
     }
 
+    @Override
+    public Problem getProblemById(int id) {
+        Problem newProblem = repo.getReferenceById(id);
+        return newProblem;
+    }
+
 
 }
