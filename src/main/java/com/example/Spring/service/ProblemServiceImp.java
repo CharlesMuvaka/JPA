@@ -39,5 +39,11 @@ public class ProblemServiceImp implements ProblemService{
         return repo.findAll();
     }
 
+    @Override
+    public List<Problem> deleteAll() {
+        repo.deleteAll();
+        return repo.findAll();
+    }
+
 
 }
