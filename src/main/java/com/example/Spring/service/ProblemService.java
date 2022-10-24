@@ -10,4 +10,5 @@ public interface ProblemService {
      List<Problem> getProblems();
      Problem getProblemById(int id);
      Problem updateProblem(int id, Problem problem);
+     List<Problem> deleteProblemById(int id);
 }
