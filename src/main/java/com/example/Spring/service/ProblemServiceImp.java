@@ -10,5 +10,8 @@ public class ProblemServiceImp implements ProblemService{
     @Autowired
     private ProblemRepository repo;
 
-
+    @Override
+    public Problem addProblem(Problem problem) {
+        return repo.save(problem);
+    }
 }
