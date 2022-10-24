@@ -53,4 +53,9 @@ public class ProblemController {
     public Problem updateApiProblem(@PathVariable("id")int id, @RequestBody Problem problem){
         return service.updateProblem(id,problem);
     }
+
+    @DeleteMapping("/deleteProblem/{id}")
+    public List<Problem> deleteProblemById(@PathVariable("id")int id){
+        return service.deleteProblemById(id);
+    }
 }
