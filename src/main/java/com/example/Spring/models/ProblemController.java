@@ -58,4 +58,9 @@ public class ProblemController {
     public List<Problem> deleteProblemById(@PathVariable("id")int id){
         return service.deleteProblemById(id);
     }
+
+    @DeleteMapping(path = "/deleteProblems")
+    public List<Problem> deleteAllProblems(){
+        return service.deleteAll();
+    }
 }
