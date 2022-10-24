@@ -48,4 +48,9 @@ public class ProblemController {
         Problem newProblem = service.getProblemById(id);
         return newProblem;
     }
+
+    @PutMapping(path = "/updateProblem/{id}")
+    public Problem updateApiProblem(@PathVariable("id")int id, @RequestBody Problem problem){
+        return service.updateProblem(id,problem);
+    }
 }
