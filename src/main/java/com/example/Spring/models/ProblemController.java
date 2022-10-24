@@ -33,13 +33,19 @@ public class ProblemController {
     // 1. Using path Variables
     // 2. Using request Params
 
-    @GetMapping("/getProblem/{id}/{name}")
-    public String getProblem(@PathVariable("id") int id, @PathVariable("name") String problemName){
-        return new String("Your problem id is " + id + "and its name is  " + problemName + "" + databaseName);
-    }
+//    @GetMapping("/getProblem/{id}/{name}")
+//    public String getProblem(@PathVariable("id") int id, @PathVariable("name") String problemName){
+//        return new String("Your problem id is " + id + "and its name is  " + problemName + "" + databaseName);
+//    }
 
     @GetMapping(path = "/problems")
     public List<Problem> getProblems(){
         return service.getProblems();
+    }
+
+    @GetMapping(path = "/getProblem/{id}")
+    public Problem getProblemById(@PathVariable("id") int id){
+        Problem newProblem = service.getProblemById(id);
+        return newProblem;
     }
 }
