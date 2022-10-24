@@ -1,6 +1,9 @@
 package com.example.Spring.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 @Entity(name = "user_problem") // creates a relation in the database with the given name
 @Table(
@@ -10,7 +13,8 @@ import java.util.Objects;
                 @UniqueConstraint( name = "user_problem_solution" , columnNames = "problem_solution")
         }
 )
-public class Problem {
+@JsonIgnoreProperties("hibernateLazyInitializer")
+public class Problem implements Serializable {
 
     @Id //identifies the id of the class as the primary key
 
