@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 //@Controller - This annotation makes a Java class able to handle http requests
 
 @RestController //Combination between the @controller and @ResponseBody annotation
@@ -34,5 +36,10 @@ public class ProblemController {
     @GetMapping("/getProblem/{id}/{name}")
     public String getProblem(@PathVariable("id") int id, @PathVariable("name") String problemName){
         return new String("Your problem id is " + id + "and its name is  " + problemName + "" + databaseName);
+    }
+
+    @GetMapping(path = "/problems")
+    public List<Problem> getProblems(){
+        return service.getProblems();
     }
 }
