@@ -28,5 +28,12 @@ public class ProblemServiceImp implements ProblemService{
         return newProblem;
     }
 
+    @Override
+    public Problem updateProblem(int id, Problem problem) {
+        problem.setId(id);
+
+        return repo.save(problem);
+    }
+
 
 }
