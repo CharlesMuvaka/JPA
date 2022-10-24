@@ -24,15 +24,19 @@ public class ProblemServiceImp implements ProblemService{
 
     @Override
     public Problem getProblemById(int id) {
-        Problem newProblem = repo.getReferenceById(id);
-        return newProblem;
+        return repo.getReferenceById(id);
     }
 
     @Override
     public Problem updateProblem(int id, Problem problem) {
         problem.setId(id);
-
         return repo.save(problem);
+    }
+
+    @Override
+    public List<Problem> deleteProblemById(int id) {
+        repo.deleteById(id);
+        return repo.findAll();
     }
 
 
