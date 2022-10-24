@@ -5,6 +5,8 @@ import com.example.Spring.repository.ProblemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProblemServiceImp implements ProblemService{
     @Autowired
@@ -14,4 +16,11 @@ public class ProblemServiceImp implements ProblemService{
     public Problem addProblem(Problem problem) {
         return repo.save(problem);
     }
+
+    @Override
+    public List<Problem> getProblems() {
+        return repo.findAll();
+    }
+
+
 }
