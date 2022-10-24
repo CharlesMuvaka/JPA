@@ -9,4 +9,5 @@ public interface ProblemService {
      Problem addProblem(Problem problem);
      List<Problem> getProblems();
      Problem getProblemById(int id);
+     Problem updateProblem(int id, Problem problem);
 }
