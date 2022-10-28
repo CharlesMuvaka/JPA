@@ -45,5 +45,10 @@ public class ProblemServiceImp implements ProblemService{
         return repo.findAll();
     }
 
+    @Override
+    public Problem findProblemByName(String name) {
+        return repo.findByName(name);
+    }
+
 
 }
