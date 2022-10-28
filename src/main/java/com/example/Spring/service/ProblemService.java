@@ -12,4 +12,6 @@ public interface ProblemService {
      Problem updateProblem(int id, Problem problem);
      List<Problem> deleteProblemById(int id);
      List<Problem> deleteAll();
+
+     Problem findProblemByName(String name);
 }
