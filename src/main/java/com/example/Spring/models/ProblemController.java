@@ -54,6 +54,11 @@ public class ProblemController {
         return service.findProblemByName(name);
     }
 
+    @GetMapping(path = "/getProblemByKeyword/{key}")
+    public List<Problem> getProblemByKeyword(@PathVariable("key")String key){
+        return service.findProblemContainingKeyword(key);
+    }
+
     @PutMapping(path = "/updateProblem/{id}")
     public Problem updateApiProblem(@PathVariable("id")int id, @RequestBody Problem problem){
         return service.updateProblem(id,problem);
