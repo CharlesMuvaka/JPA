@@ -14,4 +14,5 @@ public interface ProblemService {
      List<Problem> deleteAll();
 
      Problem findProblemByName(String name);
+     List<Problem> findProblemContainingKeyword(String keyword);
 }
