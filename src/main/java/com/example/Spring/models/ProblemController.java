@@ -1,8 +1,11 @@
 package com.example.Spring.models;
 
+import com.example.Spring.errorHandling.ApiException;
 import com.example.Spring.service.ProblemServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,10 +26,9 @@ public class ProblemController {
 //    @RequestMapping(value = "/addProblem", method = RequestMethod.POST) //generates an API endpoint
 //    @ResponseBody  //enables getting data from the server
     @PostMapping(value = "/addProblem")
-    public Problem addProblem(@RequestBody Problem problem1){
+    public ResponseEntity<Problem > addProblem(@RequestBody Problem problem1){
         System.out.println(problem1.getDuration());
-        service.addProblem(problem1);
-        return problem1;
+        return new ResponseEntity<>(service.addProblem(problem1), HttpStatus.CREATED);
     }
 
     //Sending data to the server - There are two ways
@@ -39,14 +41,14 @@ public class ProblemController {
 //    }
 
     @GetMapping(path = "/problems")
-    public List<Problem> getProblems(){
-        return service.getProblems();
+    public ResponseEntity<List<Problem>> getProblems(){
+        return new ResponseEntity<>(service.getProblems(), HttpStatus.OK);
     }
 
     @GetMapping(path = "/getProblem/{id}")
-    public Problem getProblemById(@PathVariable("id") int id){
+    public ResponseEntity<Problem> getProblemById(@PathVariable("id") int id){
         Problem newProblem = service.getProblemById(id);
-        return newProblem;
+        return new ResponseEntity<>(newProblem, HttpStatus.OK);
     }
 
     @GetMapping(path = "/getProblemByName/{name}")
@@ -57,6 +59,11 @@ public class ProblemController {
     @GetMapping(path = "/getProblemByKeyword/{key}")
     public List<Problem> getProblemByKeyword(@PathVariable("key")String key){
         return service.findProblemContainingKeyword(key);
+    }
+
+    @GetMapping(path = "/getProblemByNameAndSolution")
+    public Problem getProblemByNameAndSolution(@RequestParam String name, @RequestParam String solution){
+        return service.getProblemByNameAndSolution(name, solution);
     }
 
     @PutMapping(path = "/updateProblem/{id}")
