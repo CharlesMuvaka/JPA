@@ -26,9 +26,14 @@ public class ProblemController {
 //    @RequestMapping(value = "/addProblem", method = RequestMethod.POST) //generates an API endpoint
 //    @ResponseBody  //enables getting data from the server
     @PostMapping(value = "/addProblem")
-    public ResponseEntity<Problem > addProblem(@RequestBody Problem problem1){
+    public ResponseEntity<String > addProblem(@RequestBody Problem problem1){
         System.out.println(problem1.getDuration());
-        return new ResponseEntity<>(service.addProblem(problem1), HttpStatus.CREATED);
+        if(problem1.getName() == null || problem1.getName().isEmpty() || problem1.getConsequence() == null || problem1.getConsequence().isEmpty()  ||  problem1.getSolution() == null || problem1.getSolution().isEmpty() || problem1.getDuration() == null || problem1.getDuration().isEmpty()){
+            ApiException err = new ApiException("Please enter all the required fields", HttpStatus.NO_CONTENT.value());
+            return  new ResponseEntity<>( err.getMessage(), HttpStatus.OK);
+        }
+        service.addProblem(problem1);
+        return new ResponseEntity<>( "Problem successfully created", HttpStatus.CREATED);
     }
 
     //Sending data to the server - There are two ways
