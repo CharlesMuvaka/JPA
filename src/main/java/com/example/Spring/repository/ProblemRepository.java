@@ -16,5 +16,8 @@ public interface ProblemRepository extends JpaRepository<Problem, Integer> {
     //SELECT * FROM user_problem LIKE %per%
     List<Problem> findByNameContains(String Keyword);
 
+    //SELECT * FROM user_problem WHERE name = :name AND solution = :name
+    Problem findByNameAndSolution(String name, String solution);
+
 
 }
