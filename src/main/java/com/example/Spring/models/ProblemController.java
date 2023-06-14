@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 //@Controller - This annotation makes a Java class able to handle http requests
@@ -26,12 +27,8 @@ public class ProblemController {
 //    @RequestMapping(value = "/addProblem", method = RequestMethod.POST) //generates an API endpoint
 //    @ResponseBody  //enables getting data from the server
     @PostMapping(value = "/addProblem")
-    public ResponseEntity<String > addProblem(@RequestBody Problem problem1){
+    public ResponseEntity<String > addProblem(@Valid @RequestBody Problem problem1){
         System.out.println(problem1.getDuration());
-        if(problem1.getName() == null || problem1.getName().isEmpty() || problem1.getConsequence() == null || problem1.getConsequence().isEmpty()  ||  problem1.getSolution() == null || problem1.getSolution().isEmpty() || problem1.getDuration() == null || problem1.getDuration().isEmpty()){
-            ApiException err = new ApiException("Please enter all the required fields", HttpStatus.NO_CONTENT.value());
-            return  new ResponseEntity<>( err.getMessage(), HttpStatus.OK);
-        }
         service.addProblem(problem1);
         return new ResponseEntity<>( "Problem successfully created", HttpStatus.CREATED);
     }
