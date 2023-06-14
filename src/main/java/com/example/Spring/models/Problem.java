@@ -3,6 +3,7 @@ package com.example.Spring.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Objects;
 @Entity(name = "user_problem") // creates a relation in the database with the given name
@@ -33,9 +34,9 @@ public class Problem implements Serializable {
     private int id;
     @Column(
             name = "problem_name",
-            columnDefinition = "VARCHAR",
-            nullable = false
+            columnDefinition = "VARCHAR"
     )
+    @NotBlank
     private String name;
     @Column(
             name = "problem_consequence",
