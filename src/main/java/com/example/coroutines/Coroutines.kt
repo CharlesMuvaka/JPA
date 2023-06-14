@@ -9,5 +9,10 @@ fun main() = runBlocking {// A coroutine scope builder
         delay(1000L) // delays the coroutine with the specified milliseconds
         println("This is supposed to be printed last after a delay of one second")
     }
+
+    launch{
+        println("I think i will be the third line")
+    }
+    delay(2000L)
     println("I will be printed first, lets check and see.")
 }
