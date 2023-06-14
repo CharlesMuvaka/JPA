@@ -15,4 +15,5 @@ public interface ProblemService {
 
      Problem findProblemByName(String name);
      List<Problem> findProblemContainingKeyword(String keyword);
+     Problem getProblemByNameAndSolution(String name, String solution);
 }
